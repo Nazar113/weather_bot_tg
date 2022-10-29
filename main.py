@@ -27,12 +27,12 @@ def message_handler(message):
 
     city = message.text
     try:
-        weather_service.get_weather(city)
+        weather_data = weather_service.get_weather(city)
     except weather_service.NotFoundCity:
         bot.send_message(message.chat.id, 'Не можу знайти координати ', smiles_dict['sad_smile'],'\n''Перевірте точність введення назви ', smiles_dict['smile_face'], parse_mode='html')
 
     bot.send_message(message.chat.id, smiles_dict['sun_cloud'], parse_mode='html')
-    bot.send_message(message.chat.id, get_message(city), parse_mode='html')
+    bot.send_message(message.chat.id, get_message(weather_data), parse_mode='html')
 
     #
     #
